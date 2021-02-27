@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049175733602",
+    "project_id": "breathing-exercises-1",
+    "storage_bucket": "breathing-exercises-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049175733602:android:7de680759f33639858e83b",
+        "android_client_info": {
+          "package_name": "ru.kalistratov.breathtraining2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049175733602-3bptkk3o92acos78qp5rp7s667tbgeo9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSLM38tCneSGdJEvMX6_DIzlMuhYh0CrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049175733602-3bptkk3o92acos78qp5rp7s667tbgeo9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

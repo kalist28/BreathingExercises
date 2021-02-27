@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Breath Training 2</string>
+    <string name="home">Дыхательная Гимнастика</string>
+    <string name="training">Тренировка</string>
+    <string name="details">Подробнее</string>
+    <string name="person">Я</string>
+    <string name="settings">Настройки</string>
+    <string name="action_settings">Settings</string>
+    <string name="level">Уровень</string>
+</resources>

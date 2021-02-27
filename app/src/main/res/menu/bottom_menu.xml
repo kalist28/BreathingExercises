@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/training"
+        app:cnb_iconColor="@color/home"/>
+  <!--  <item
+        android:id="@+id/details"
+        android:icon="@drawable/ic_details"
+        android:title="@string/details"
+        app:cnb_iconColor="@color/details"/> -->
+    <item
+        android:id="@+id/person"
+        android:icon="@drawable/ic_person"
+        android:title="@string/person"
+        app:cnb_iconColor="@color/person" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings"
+        app:cnb_iconColor="@color/settings" />
+</menu>

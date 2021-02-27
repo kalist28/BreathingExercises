@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/background_home">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="10dp">
+        <TextView
+                android:id="@+id/topic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/settings"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="27sp"/>
+
+        <ImageButton
+                android:id="@+id/backspace"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center|left"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_backspace"/>
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/levels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"/>
+
+    <TextView
+            android:id="@+id/levelTopic"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Уровень 1"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:layout_margin="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trainings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+
+</LinearLayout>

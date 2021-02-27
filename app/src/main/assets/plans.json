@@ -1,0 +1,227 @@
+[
+  {
+    "type": "simple",
+    "name": "Простое дыхание",
+    "description": "Простое дыхание позволяют успокоиться и восстановить ритмичность дыхания, а так же выработать умение дышать всегда правильно.",
+    "levels": [
+      {
+        "number": 1,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19,
+            "name": "Level 2"
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+
+      {
+        "number": 2,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "count": 19
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "levels": [
+      {
+        "number": 1,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "firstPauseTime": 12,
+            "secondPauseTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "firstPauseTime": 12,
+            "secondPauseTime": 12,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "trainings": [
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "firstPauseTime": 12,
+            "secondPauseTime": 12,
+            "count": 19
+          },
+          {
+            "exhaleTime": 19,
+            "inhaleTime": 12,
+            "firstPauseTime": 12,
+            "secondPauseTime": 12,
+            "count": 19
+          }
+        ]
+      }
+    ],
+    "type": "square",
+    "description": "Специальная техника заставляет работать большую часть лёгких, увеличивая тем самым количество поступающего в кровь кислорода.",
+    "name": "Квадратное дыхание"
+  },
+  {
+    "levels": [],
+    "type": "square",
+    "description": "План тренировок для переболевших с целью востановить и укрепить лёгкие, увеличить легкость и свободность дыхания и прежний режим работы.",
+    "name": "Реабилитация COVID 19"
+  }
+]
