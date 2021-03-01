@@ -9,6 +9,7 @@
         android:background="@drawable/back_gradient">
 
     <TextView
+            android:id="@+id/topic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Тренировка"
@@ -41,6 +42,7 @@
                     android:paddingRight="5dp"/>
 
             <ImageView
+                    android:id="@+id/first_pause_img"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_pause"
@@ -69,6 +71,7 @@
                     android:paddingRight="5dp"/>
 
             <ImageView
+                    android:id="@+id/second_pause_img"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_pause"
@@ -88,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right">
+
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
@@ -95,6 +99,7 @@
                     app:tint="@color/white"/>
 
             <TextView
+                    android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:text="10"
                     android:textColor="@color/white"

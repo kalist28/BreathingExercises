@@ -18,13 +18,23 @@ class TrainingSelectionAdapter(private val trainings: LinkedList<Training>):
         RecyclerView.Adapter<TrainingCard>() {
 
     private var activeTraining: Int = 0
+    private var adPosition: Int = 0
 
     init {
-        activeTraining = 2
-        trainings.add(activeTraining, SimpleTraining())
+        activeTraining =  trainings.size / 2
+        adPosition = activeTraining + 1
+
+        Log.e("ADDDDDDDD", "${adPosition} ${trainings.size}" )
+        if(adPosition < trainings.size)
+            trainings.add(adPosition, SimpleTraining())
+        else
+            trainings.add(SimpleTraining())
+
+        Log.e("ADDDDDDDD", "${adPosition} ${trainings.size}" )
+
 
         for (t in trainings) {
-            Log.e("TAG", "${t.name}: ${t is SquareTraining} : ${t}" )
+            Log.e("TAG", "${t.name}: ${t is SquareTraining} : $t = ${t.javaClass}" )
         }
     }
 
@@ -36,7 +46,9 @@ class TrainingSelectionAdapter(private val trainings: LinkedList<Training>):
 
     override fun onBindViewHolder(holder: TrainingCard, position: Int) {
         holder.deactivate()
-        if (position == activeTraining) holder.isAdBanner()
+        if (position == adPosition) holder.isAdBanner()
+        if (position == activeTraining) holder.activate()
+        holder.setTrainingInfo( trainings[position])
         setAnimation(holder.itemView)
     }
 

@@ -10,37 +10,41 @@
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 1
           },
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
             "count": 19,
-            "name": "Level 2"
+            "number": 2
           },
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 3
           },
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 4
           },
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 5
           },
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 6
           }
         ]
       },
-
       {
         "number": 2,
         "trainings": [
@@ -183,14 +187,16 @@
             "inhaleTime": 12,
             "firstPauseTime": 12,
             "secondPauseTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 1
           },
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
             "firstPauseTime": 12,
             "secondPauseTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 2
           }
         ]
       },

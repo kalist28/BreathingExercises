@@ -18,6 +18,12 @@ abstract class Training(name: String, var count: Byte, var number: Byte) {
             else field
         }
 
+    abstract fun getTime() : Int
+    override fun toString(): String {
+        return "Training(name='$name', number=$number, count=$count)"
+    }
+
+
 }
 
 /**
@@ -44,7 +50,11 @@ open class SimpleTraining(name: String,
                           val exhaleTime : Byte, ):
     Training(name, count, number) {
     constructor() : this("null", 0, 0,0,0)
- }
+
+    override fun getTime(): Int {
+        return (inhaleTime + exhaleTime) * count
+    }
+}
 
 /**
  * The class of simple training.
@@ -63,4 +73,10 @@ class SquareTraining(name: String,
                      inhaleTime: Byte,
                      exhaleTime: Byte,
                      val firstPauseTime : Byte,
-                     val secondPauseTime : Byte) : SimpleTraining(name, count, number, inhaleTime, exhaleTime)
+                     val secondPauseTime : Byte)
+    : SimpleTraining(name, count, number, inhaleTime, exhaleTime){
+
+    override fun getTime(): Int {
+        return (inhaleTime + exhaleTime + firstPauseTime + secondPauseTime) * count
+    }
+}

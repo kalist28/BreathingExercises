@@ -12,29 +12,42 @@ abstract class DoubleStatusView(view: View) : RecyclerView.ViewHolder(view) {
     /** View when status is deactivate. */
     private val viewDeactivate: View = view.findViewById(R.id.deactivate)
 
+    /** The active view on the moment. */
+    protected var activeView : View = view
+
     /** Set status` view. */
     protected fun setVisibleForFrames(b: Boolean) {
         if (b) {
-            viewActivate.visibility     = View.GONE
-            viewDeactivate.visibility   = View.VISIBLE
+            setViewGone(viewActivate)
+            setViewVisible(viewDeactivate)
         } else {
-            viewActivate.visibility     = View.VISIBLE
-            viewDeactivate.visibility   = View.GONE
+            setViewVisible(viewActivate)
+            setViewGone(viewDeactivate)
         }
     }
 
     /** Set view`s deactivated status. */
     public open fun deactivate() {
         setVisibleForFrames(true)
+        activeView = viewDeactivate
     }
 
     /** Set view`s activated status. */
     public open fun activate() {
         setVisibleForFrames(false)
+        activeView = viewActivate
     }
 
     public open fun deactivateAllViews() {
-        viewActivate.visibility     = View.GONE
-        viewDeactivate.visibility   = View.GONE
+        setViewGone(viewActivate)
+        setViewGone(viewDeactivate)
+    }
+
+    protected fun setViewGone(v: View) {
+        v.visibility = View.GONE
+    }
+
+    protected fun setViewVisible(v: View) {
+        v.visibility = View.VISIBLE
     }
 }

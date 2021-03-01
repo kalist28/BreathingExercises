@@ -17,6 +17,7 @@ import java.util.*
  */
 abstract class Plan(val name: String, val description: String, val type: String) {
     abstract fun levelsCount() : Int
+
 }
 
 /**
@@ -24,8 +25,20 @@ abstract class Plan(val name: String, val description: String, val type: String)
  *
  * @property trainingsCount the level`s list of all trainings.
  */
-abstract class TrainingPlan<E : Training>(name: String, description: String, type: String):
-    Plan(name, description, type) {
+abstract class TrainingPlan<E : Training> (name: String,
+                                           description: String,
+                                           type: String)
+    : Plan(name, description, type) {
+
+    constructor() : this("null", "null", "null")
+
+    constructor(name: String,
+                description: String,
+                type: String,
+                levels : LinkedList<TrainingLevel<E>>)
+            : this(name, description, type) {
+        this.levels = levels
+    }
     var levels : LinkedList<TrainingLevel<E>> = LinkedList()
 
     override fun levelsCount(): Int {
@@ -85,9 +98,15 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
 class SimpleBreathPlan(name: String, description: String, type: String) :
     TrainingPlan<SimpleTraining>(name, description, type)
 
-class SquareBreathPlan(name: String, description: String, type: String) :
-    TrainingPlan<SquareTraining>(name, description, type), JsonDeserializer<SquareBreathPlan> {
-    constructor() : this("1234", "", "")
+class SquareBreathPlan : TrainingPlan<SquareTraining>, JsonDeserializer<SquareBreathPlan> {
+
+    constructor(): super()
+
+    constructor(name: String,
+                description: String,
+                type: String,
+                levels : LinkedList<TrainingLevel<SquareTraining>>)
+            : super (name, description, type, levels)
 
     override fun deserialize(
         json: JsonElement?,
@@ -96,27 +115,14 @@ class SquareBreathPlan(name: String, description: String, type: String) :
     ): SquareBreathPlan {
         val listType = object : TypeToken<LinkedList<TrainingLevel<SquareTraining>>>() {}.type
         val g = GsonBuilder().create()
-        val newPlan = SquareBreathPlan()
 
-        val levels = json?.asJsonObject?.get("levels")?.asJsonArray ?:
-            throw NullPointerException("File is not consist json")
-        newPlan.levels = g.fromJson(levels, listType)
-
-        /*
-        val levels = json?.asJsonObject?.get("levels")?.asJsonArray ?:
-            throw NullPointerException("File is not consist json")
-        for (level in levels) {
-            val trainings = LinkedList<SquareTraining>()
-            val trainingsArray = level.asJsonObject.get("trainings").asJsonArray
-            for (training in trainingsArray) {
-                trainings.add(g.fromJson(training, SquareTraining::class.java))
-            }
-            val num = level.asJsonObject.get("number").toString().toByte()
-            val newLevel = TrainingLevel<SquareTraining>(num, trainings)
-            newPlan.levels.add(newLevel)
-        }
-
-         */
-        return newPlan
+        val jo = json?.asJsonObject ?: throw NullPointerException("File is not consist json")
+        
+        val levelsJson = jo.get("levels")?.asJsonArray
+        val levels : LinkedList<TrainingLevel<SquareTraining>> = g.fromJson(levelsJson, listType)
+        val type : String           = g.fromJson(jo.get("type"), String::class.java)
+        val name : String           = g.fromJson(jo.get("name"), String::class.java)
+        val description : String    = g.fromJson(jo.get("description"), String::class.java)
+        return SquareBreathPlan(name, description, type, levels)
     }
 }

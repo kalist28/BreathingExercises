@@ -27,13 +27,14 @@ class TrainingSelectionActivity : AppCompatActivity(R.layout.activity_training_s
         }
         val trainingId = intent.getIntExtra("trainingId", -1)
 
-        if (trainingId == -1) {
+        if (trainingId == -1 ) {
             finish()
             return
         }
 
         MobileAds.initialize(this)
 
+        @Suppress("UNCHECKED_CAST") /* Always it`s TrainingPlan<Training>. */
         val trainingPlan = TrainingPlans.plans[trainingId] as TrainingPlan<Training>
         val topic = findViewById<TextView>(R.id.topic)
         topic.setTextColor(resources.getColor(R.color.home))
@@ -51,10 +52,10 @@ class TrainingSelectionActivity : AppCompatActivity(R.layout.activity_training_s
             val levelTopic = findViewById<TextView>(R.id.levelTopic)
             val levelNum = getString(R.string.level) + " ${it.number}"
             levelTopic.text = levelNum
-            trainingList.adapter = TrainingSelectionAdapter(it.trainings)
+            trainingList.adapter = TrainingSelectionAdapter(LinkedList(it.trainings))
         }
 
         trainingList.layoutManager = LinearLayoutManager(this)
-        trainingList.adapter = TrainingSelectionAdapter(trainingPlan.levels[0].trainings)
+        trainingList.adapter = TrainingSelectionAdapter(LinkedList(trainingPlan.levels[0].trainings))
     }
 }
