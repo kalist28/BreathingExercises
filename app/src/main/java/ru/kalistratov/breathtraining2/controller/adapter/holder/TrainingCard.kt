@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.google.android.gms.ads.*
 import ru.kalistratov.breathtraining2.R
-import ru.kalistratov.breathtraining2.model.SimpleTraining
-import ru.kalistratov.breathtraining2.model.SquareTraining
-import ru.kalistratov.breathtraining2.model.Training
-import ru.kalistratov.breathtraining2.model.TriangleTraining
+import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.SimpleTraining
+import ru.kalistratov.breathtraining2.model.training.SquareTraining
+import ru.kalistratov.breathtraining2.model.training.TriangleTraining
 import java.lang.Exception
 import java.util.*
 
@@ -66,13 +66,13 @@ open class TrainingCard(val view: View) : DoubleStatusView(view) {
      *
      * @param t is training.
      */
-    fun setTrainingInfo(t: Training) {
+    fun setTrainingInfo(t: ATraining) {
         init()
         time.text   = t.getTime().toString()
         topic.text  = t.name
         when (t) {
-            is SquareTraining   -> setTrainingInfo(t)
-            is SimpleTraining   -> setTrainingInfo(t)
+            is SquareTraining -> setTrainingInfo(t)
+            is SimpleTraining -> setTrainingInfo(t)
             is TriangleTraining -> setTrainingInfo(t)
             else -> throw Exception("Training type not added")
         }

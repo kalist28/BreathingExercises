@@ -4,22 +4,18 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.holder.TrainingCard
-import ru.kalistratov.breathtraining2.model.SimpleTraining
-import ru.kalistratov.breathtraining2.model.SquareTraining
-import ru.kalistratov.breathtraining2.model.Training
+import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.SimpleTraining
 import ru.kalistratov.breathtraining2.view.training.TrainingActivity
 import java.util.*
 
-class TrainingSelectionAdapter(private val trainings: LinkedList<Training>, val context: Context):
+class TrainingSelectionAdapter(private val trainings: LinkedList<ATraining>, val context: Context):
         RecyclerView.Adapter<TrainingCard>() {
 
     private var activeTraining: Int = 0

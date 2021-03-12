@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import ru.kalistratov.breathtraining2.R
-import ru.kalistratov.breathtraining2.model.*
+import ru.kalistratov.breathtraining2.model.training.plan.TrainingPlans
 
 
 class MainActivity : AppCompatActivity() {

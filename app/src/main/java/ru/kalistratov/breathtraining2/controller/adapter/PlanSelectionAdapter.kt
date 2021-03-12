@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.holder.TrainingPlanCard
-import ru.kalistratov.breathtraining2.model.TrainingPlans
+import ru.kalistratov.breathtraining2.model.training.plan.TrainingPlans
 import ru.kalistratov.breathtraining2.view.training.TrainingSelectionActivity
 
 class PlanSelectionAdapter(private val context: Context?)

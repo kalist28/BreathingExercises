@@ -12,9 +12,9 @@ import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.LevelSelectionAdapter
 import ru.kalistratov.breathtraining2.controller.adapter.OnLevelSelectListener
 import ru.kalistratov.breathtraining2.controller.adapter.TrainingSelectionAdapter
-import ru.kalistratov.breathtraining2.model.Training
-import ru.kalistratov.breathtraining2.model.TrainingPlan
-import ru.kalistratov.breathtraining2.model.TrainingPlans
+import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.plan.ATrainingPlan
+import ru.kalistratov.breathtraining2.model.training.plan.TrainingPlans
 import java.util.*
 
 class TrainingSelectionActivity : AppCompatActivity(R.layout.activity_training_selection) {
@@ -40,7 +40,7 @@ class TrainingSelectionActivity : AppCompatActivity(R.layout.activity_training_s
     override fun onResume() {
         super.onResume()
         @Suppress("UNCHECKED_CAST") /* Always it`s TrainingPlan<Training>. */
-        val trainingPlan = TrainingPlans.plans[planId] as TrainingPlan<Training>
+        val trainingPlan = TrainingPlans.plans[planId] as ATrainingPlan<ATraining>
 
         if (trainingPlan.levels.size == 0) {
             finish()
