@@ -10,24 +10,46 @@ import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.model.SimpleTraining
 import ru.kalistratov.breathtraining2.model.SquareTraining
 import ru.kalistratov.breathtraining2.model.Training
+import ru.kalistratov.breathtraining2.model.TriangleTraining
 import java.lang.Exception
 import java.util.*
 
+/**
+ * The class of training`s card view.
+ *
+ * @property view the view`s id.
+ */
 open class TrainingCard(val view: View) : DoubleStatusView(view) {
 
-    private lateinit var card: CardView
+    /** The main card`s view. */
+    public lateinit var card: CardView
+
+    /** The training total time`s view. */
     private lateinit var time: TextView
+
+    /** The training topic`s view. */
     private lateinit var topic: TextView
+
+    /** The number of training inhale view. */
     private lateinit var inhale: TextView
+
+    /** The number of training exhale view. */
     private lateinit var exhale: TextView
+
+    /** The number of training first pause view. */
     private lateinit var firstPause: TextView
+
+    /** The number of training second pause view. */
     private lateinit var secondPause: TextView
+
+    /** The first pause`s image view. */
     private lateinit var firstPauseImg: ImageView
+
+    /** The second pause`s image view. */
     private lateinit var secondPauseImg: ImageView
 
-
     /** Called when status is changing. */
-    fun init() {
+    private fun init() {
          card           = view.findViewById(R.id.card)
          time           = activeView.findViewById(R.id.time)
          topic          = activeView.findViewById(R.id.topic)
@@ -39,18 +61,28 @@ open class TrainingCard(val view: View) : DoubleStatusView(view) {
          secondPauseImg = activeView.findViewById(R.id.second_pause_img)
     }
 
+    /**
+     * Determine the type of workout and redirect to the desired setting.
+     *
+     * @param t is training.
+     */
     fun setTrainingInfo(t: Training) {
         init()
-        Log.e("TAG", "setTrainingInfo: + $t", )
         time.text   = t.getTime().toString()
         topic.text  = t.name
         when (t) {
-            is SquareTraining -> setTrainingInfo(t)
-            is SimpleTraining -> setTrainingInfo(t)
+            is SquareTraining   -> setTrainingInfo(t)
+            is SimpleTraining   -> setTrainingInfo(t)
+            is TriangleTraining -> setTrainingInfo(t)
             else -> throw Exception("Training type not added")
         }
     }
 
+    /**
+     * Setting up the view for simple training.
+     *
+     *  @param t is simple training.
+     */
     private fun setTrainingInfo(t: SimpleTraining) {
         inhale.text = "${t.inhaleTime}"
         exhale.text = "${t.exhaleTime}"
@@ -60,20 +92,41 @@ open class TrainingCard(val view: View) : DoubleStatusView(view) {
         setViewGone(secondPauseImg)
     }
 
+    /**
+     * Setting up the view for square training.
+     *
+     *  @param t is square training.
+     */
     private fun setTrainingInfo(t: SquareTraining) {
         inhale.text         = "${t.inhaleTime}"
         exhale.text         = "${t.exhaleTime}"
-        firstPause.text     = "${t.exhaleTime}"
-        secondPause.text    = "${t.exhaleTime}"
+        firstPause.text     = "${t.firstPauseTime}"
+        secondPause.text    = "${t.secondPauseTime}"
     }
 
+    /**
+     * Setting up the view for triangle training.
+     *
+     *  @param t is triangle training.
+     */
+    private fun setTrainingInfo(t: TriangleTraining) {
+        inhale.text         = "${t.inhaleTime}"
+        exhale.text         = "${t.exhaleTime}"
+        firstPause.text     = "${t.pauseTime}"
+        setViewGone(secondPause)
+        setViewGone(secondPauseImg)
+    }
+
+    /**
+     * Enabling ads if this card is ad card.
+     */
     fun isAdBanner() {
         deactivateAllViews()
         val viewDeactivate: View = view.findViewById(R.id.add_banner)
         viewDeactivate.visibility = View.VISIBLE
 
         val mAdView : AdView = viewDeactivate.findViewById(R.id.adView)
-        MobileAds.setRequestConfiguration(RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("F83FCB791B4AB587E0D0AAD7E66C34BC")).build())
+        MobileAds.setRequestConfiguration(RequestConfiguration.Builder().setTestDeviceIds(listOf("F83FCB791B4AB587E0D0AAD7E66C34BC")).build())
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
     }

@@ -2,19 +2,24 @@ package ru.kalistratov.breathtraining2.controller.adapter
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.holder.TrainingCard
 import ru.kalistratov.breathtraining2.model.SimpleTraining
 import ru.kalistratov.breathtraining2.model.SquareTraining
 import ru.kalistratov.breathtraining2.model.Training
+import ru.kalistratov.breathtraining2.view.training.TrainingActivity
 import java.util.*
 
-class TrainingSelectionAdapter(private val trainings: LinkedList<Training>):
+class TrainingSelectionAdapter(private val trainings: LinkedList<Training>, val context: Context):
         RecyclerView.Adapter<TrainingCard>() {
 
     private var activeTraining: Int = 0
@@ -24,18 +29,12 @@ class TrainingSelectionAdapter(private val trainings: LinkedList<Training>):
         activeTraining =  trainings.size / 2
         adPosition = activeTraining + 1
 
-        Log.e("ADDDDDDDD", "${adPosition} ${trainings.size}" )
+        /** Add ad banner. */
         if(adPosition < trainings.size)
             trainings.add(adPosition, SimpleTraining())
         else
             trainings.add(SimpleTraining())
 
-        Log.e("ADDDDDDDD", "${adPosition} ${trainings.size}" )
-
-
-        for (t in trainings) {
-            Log.e("TAG", "${t.name}: ${t is SquareTraining} : $t = ${t.javaClass}" )
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrainingCard {
@@ -50,6 +49,14 @@ class TrainingSelectionAdapter(private val trainings: LinkedList<Training>):
         if (position == activeTraining) holder.activate()
         holder.setTrainingInfo( trainings[position])
         setAnimation(holder.itemView)
+        holder.card.setOnClickListener {
+            val a = Intent(context, TrainingActivity::class.java)
+            a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(a)
+        }
+
+        if (position == 0) holder.view.setPadding(0,20,0,0)
+        if (position == trainings.size - 1) holder.view.setPadding(0,0,0,50)
     }
 
     private fun setAnimation(itemView: View) {

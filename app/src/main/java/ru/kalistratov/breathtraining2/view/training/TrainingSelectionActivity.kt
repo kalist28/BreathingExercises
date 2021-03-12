@@ -12,7 +12,6 @@ import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.LevelSelectionAdapter
 import ru.kalistratov.breathtraining2.controller.adapter.OnLevelSelectListener
 import ru.kalistratov.breathtraining2.controller.adapter.TrainingSelectionAdapter
-import ru.kalistratov.breathtraining2.model.SimpleTraining
 import ru.kalistratov.breathtraining2.model.Training
 import ru.kalistratov.breathtraining2.model.TrainingPlan
 import ru.kalistratov.breathtraining2.model.TrainingPlans
@@ -20,22 +19,33 @@ import java.util.*
 
 class TrainingSelectionActivity : AppCompatActivity(R.layout.activity_training_selection) {
 
+    private var planId: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         findViewById<ImageButton>(R.id.backspace).setOnClickListener {
             onBackPressed()
         }
-        val trainingId = intent.getIntExtra("trainingId", -1)
 
-        if (trainingId == -1 ) {
+        planId = intent.getIntExtra("planId", -1)
+
+        if (planId == -1) {
             finish()
             return
         }
 
         MobileAds.initialize(this)
+    }
 
+    override fun onResume() {
+        super.onResume()
         @Suppress("UNCHECKED_CAST") /* Always it`s TrainingPlan<Training>. */
-        val trainingPlan = TrainingPlans.plans[trainingId] as TrainingPlan<Training>
+        val trainingPlan = TrainingPlans.plans[planId] as TrainingPlan<Training>
+
+        if (trainingPlan.levels.size == 0) {
+            finish()
+            return
+        }
         val topic = findViewById<TextView>(R.id.topic)
         topic.setTextColor(resources.getColor(R.color.home))
         topic.text = trainingPlan.name
@@ -52,10 +62,10 @@ class TrainingSelectionActivity : AppCompatActivity(R.layout.activity_training_s
             val levelTopic = findViewById<TextView>(R.id.levelTopic)
             val levelNum = getString(R.string.level) + " ${it.number}"
             levelTopic.text = levelNum
-            trainingList.adapter = TrainingSelectionAdapter(LinkedList(it.trainings))
+            trainingList.adapter = TrainingSelectionAdapter(LinkedList(it.trainings), baseContext)
         }
 
         trainingList.layoutManager = LinearLayoutManager(this)
-        trainingList.adapter = TrainingSelectionAdapter(LinkedList(trainingPlan.levels[0].trainings))
+        trainingList.adapter = TrainingSelectionAdapter(LinkedList(trainingPlan.levels[0].trainings), baseContext)
     }
 }

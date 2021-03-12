@@ -11,7 +11,6 @@ import ru.kalistratov.breathtraining2.controller.adapter.LevelSelectionAdapter
  *
  * @property view the view`s id.
  * @property adapter the adapter of recycler list.
- * @constructor Creates a level.
  */
 class LevelCard(private val view: View,
                 private val adapter: LevelSelectionAdapter):

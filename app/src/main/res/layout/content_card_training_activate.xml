@@ -6,7 +6,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:orientation="vertical"
-        android:background="@drawable/back_gradient">
+        android:background="@color/home">
 
     <TextView
             android:id="@+id/topic"

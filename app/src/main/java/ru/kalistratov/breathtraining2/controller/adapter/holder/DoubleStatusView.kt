@@ -4,6 +4,11 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
 
+/**
+ * View holder with two status.
+ *
+ * @param view is card layout.
+ */
 abstract class DoubleStatusView(view: View) : RecyclerView.ViewHolder(view) {
 
     /** View when status is activate. */
@@ -38,16 +43,27 @@ abstract class DoubleStatusView(view: View) : RecyclerView.ViewHolder(view) {
         activeView = viewActivate
     }
 
+    /** Deactivate all views. */
     public open fun deactivateAllViews() {
         setViewGone(viewActivate)
         setViewGone(viewDeactivate)
     }
 
-    protected fun setViewGone(v: View) {
-        v.visibility = View.GONE
+    /**
+     * Set [view] visibility status is gone.
+     *
+     * @param view is element view.
+     */
+    protected fun setViewGone(view: View) {
+        view.visibility = View.GONE
     }
 
-    protected fun setViewVisible(v: View) {
-        v.visibility = View.VISIBLE
+    /**
+     * Set [view] visibility status is visible.
+     *
+     * @param view is element view.
+     */
+    protected fun setViewVisible(view: View) {
+        view.visibility = View.VISIBLE
     }
 }

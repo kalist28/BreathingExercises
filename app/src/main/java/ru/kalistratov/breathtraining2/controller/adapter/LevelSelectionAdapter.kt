@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
@@ -17,18 +16,29 @@ fun interface OnLevelSelectListener {
     fun onSelect(level: TrainingLevel<Training>)
 }
 
+/**
+ * The level selection adapter.
+ *
+ * @property levels is a training levels list.
+ * @property context is activity context.
+ */
 class LevelSelectionAdapter(private val levels: LinkedList<TrainingLevel<Training>>,
-                            private val context: Context?)
-    : RecyclerView.Adapter<LevelCard>() {
+                            private val context: Context?):
+        RecyclerView.Adapter<LevelCard>() {
 
+    /** The activated card on the moment. */
     private var activeItem: Int = 0
-    private var mRecyclerView: RecyclerView? = null
+
+    /** The recycler view of this adapter. */
+    private var recyclerView: RecyclerView? = null
+
+    /** Levels selections listener. */
     var onLevelSelectListener: OnLevelSelectListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LevelCard {
         val view = LayoutInflater
             .from(context).inflate(R.layout.view_card_level, parent, false)
-        mRecyclerView = parent as RecyclerView
+        recyclerView = parent as RecyclerView
         return LevelCard(view, this)
     }
 
@@ -47,6 +57,12 @@ class LevelSelectionAdapter(private val levels: LinkedList<TrainingLevel<Trainin
         return levels.size
     }
 
+    /**
+     * Convert dip to px.
+     *
+     * @param dip - dp value.
+     * @return dp value in pixels.
+     */
     fun convert(dip: Float): Float {
         val r: Resources = context!!.resources
         return TypedValue.applyDimension(
@@ -56,6 +72,11 @@ class LevelSelectionAdapter(private val levels: LinkedList<TrainingLevel<Trainin
         )
     }
 
+    /**
+     * Activate item at [id] index.
+     *
+     * @param id is item index.
+     */
     fun activateItem(id: Int) {
         notifyItemChanged(activeItem)
         activeItem = id
