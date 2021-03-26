@@ -10,7 +10,13 @@ abstract class ATraining(name: String,
                          var count: Byte,
                          var number: Byte,
                          val inhaleTime : Byte,
-                         val exhaleTime : Byte){
+                         val exhaleTime : Byte) {
+
+    companion object {
+        const val PAUSE: String = "пауза"
+        const val INHALE: String = "вдох"
+        const val EXHALE: String = "выдох"
+    }
 
     @Suppress("SENSELESS_COMPARISON")
     var name: String = name
@@ -25,4 +31,8 @@ abstract class ATraining(name: String,
     override fun toString(): String {
         return "Training(name='$name', number=$number, count=$count)"
     }
+
+    abstract fun getStepName(index: Int): String
+
+    abstract fun getStepTime(index: Int): Byte
 }

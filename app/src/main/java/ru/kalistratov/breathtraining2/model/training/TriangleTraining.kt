@@ -21,4 +21,21 @@ class TriangleTraining(name: String,
     override fun getTime(): Int {
         return (inhaleTime + exhaleTime + pauseTime) * count
     }
+
+    override fun getStepName(index: Int): String {
+        return when(index) {
+            0 -> INHALE
+            1 -> PAUSE
+            2 -> EXHALE
+            else -> getStepName(index % 3)
+        }
+    }
+
+    override fun getStepTime(index: Int): Byte {
+        return when(index) {
+            0 -> inhaleTime
+            1 -> exhaleTime
+            else -> getStepTime(index % 2)
+        }
+    }
 }

@@ -13,7 +13,7 @@ import ru.kalistratov.breathtraining2.model.training.plan.PlanLevel
 import java.util.*
 
 fun interface OnLevelSelectListener {
-    fun onSelect(level: PlanLevel<ATraining>)
+    fun onSelect(level: PlanLevel<out ATraining>)
 }
 
 /**
@@ -22,7 +22,7 @@ fun interface OnLevelSelectListener {
  * @property levels is a training levels list.
  * @property context is activity context.
  */
-class LevelSelectionAdapter(private val levels: LinkedList<PlanLevel<ATraining>>,
+class LevelSelectionAdapter(private val levels: LinkedList<out PlanLevel<out ATraining>>,
                             private val context: Context?):
         RecyclerView.Adapter<LevelCard>() {
 

@@ -28,4 +28,8 @@ class SquareBreathPlan : ATrainingPlan<SquareTraining>, JsonDeserializer<SquareB
         val levels : LinkedList<PlanLevel<SquareTraining>> = gson.fromJson(levelsJson, listType)
         return SquareBreathPlan(createPlanInfo(json), levels)
     }
+
+    override fun toString(): String {
+        return "SquareBreathPlan()"
+    }
 }

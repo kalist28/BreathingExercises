@@ -15,7 +15,10 @@ import ru.kalistratov.breathtraining2.model.training.SimpleTraining
 import ru.kalistratov.breathtraining2.view.training.TrainingActivity
 import java.util.*
 
-class TrainingSelectionAdapter(private val trainings: LinkedList<ATraining>, val context: Context):
+class TrainingSelectionAdapter(private val trainings: LinkedList<ATraining>,
+                               val levelNum: Byte,
+                               val planId: Byte,
+                               val context: Context):
         RecyclerView.Adapter<TrainingCard>() {
 
     private var activeTraining: Int = 0
@@ -46,9 +49,12 @@ class TrainingSelectionAdapter(private val trainings: LinkedList<ATraining>, val
         holder.setTrainingInfo( trainings[position])
         setAnimation(holder.itemView)
         holder.card.setOnClickListener {
-            val a = Intent(context, TrainingActivity::class.java)
-            a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            context.startActivity(a)
+            val intent = Intent(context, TrainingActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra(TrainingActivity.EN_PLAN_ID, planId)
+            intent.putExtra(TrainingActivity.EN_LEVEL_NUMBER, levelNum)
+            intent.putExtra(TrainingActivity.EN_TRAINING_NUMBER, trainings[position].number)
+            context.startActivity(intent)
         }
 
         if (position == 0) holder.view.setPadding(0,20,0,0)

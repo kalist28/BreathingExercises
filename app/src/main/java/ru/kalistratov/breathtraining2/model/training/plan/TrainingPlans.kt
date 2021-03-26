@@ -1,6 +1,7 @@
 package ru.kalistratov.breathtraining2.model.training.plan
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -65,31 +66,39 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
      * @param lNum is level`s number.
      * @param tNum is training`s number.
      */
-    fun findTrainingInPlan(pId: Int, lNum: Int, tNum: Int) : ATraining? {
+    fun findTrainingInPlan(pId: Byte, lNum: Byte, tNum: Byte) : ATraining? {
         var plan: ATrainingPlan<*>? = null
         var level: PlanLevel<*>? = null
         var training: ATraining? = null
 
+        Log.e("$%#$%#", "findTrainingInPlan: ${pId} , ${lNum} , ${tNum}" )
+
         for (p in plans) {
-            if (p.id.toInt() == pId) {
+            if (p.id == pId) {
                 plan = p as ATrainingPlan<*>
                 break
             }
         }
 
+        Log.e("$%#$%#", plan.toString() )
+
         for (l in plan?.levels!!) {
-            if (l.id.toInt() == lNum) {
+            if (l.number == lNum) {
                 level = l
                 break
             }
         }
 
+        Log.e("$%#$%#", level.toString() )
+
         for (t in level?.trainings!!) {
-            if (t.number.toInt() == tNum) {
+            if (t.number == tNum) {
                 training = t
                 break
             }
         }
+
+        Log.e("$%#$%#", training.toString() )
 
         return training
     }

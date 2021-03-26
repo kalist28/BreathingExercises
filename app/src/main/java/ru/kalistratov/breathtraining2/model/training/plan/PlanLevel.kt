@@ -9,4 +9,4 @@ import java.util.*
  * @property number the number of level.
  * @property trainings the list of level`s trainings.
  */
-class PlanLevel<T : ATraining>(var id: Byte, val number: Byte, val trainings: LinkedList<T>)
+class PlanLevel<T : ATraining>(val number: Byte, val trainings: LinkedList<T>)

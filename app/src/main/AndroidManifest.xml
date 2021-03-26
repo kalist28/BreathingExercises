@@ -16,6 +16,8 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3171253839600710~8994034447"/>
 
+        <service android:name=".view.training.engine.TrainingEngineService"/>
+
         <activity android:name=".view.training.TrainingActivity"/>
         <activity android:name=".view.training.TrainingSelectionActivity"/>
         <activity android:name=".view.main.MainActivity">

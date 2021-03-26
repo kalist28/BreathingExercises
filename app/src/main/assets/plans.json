@@ -167,12 +167,14 @@
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 1
           },
           {
             "exhaleTime": 19,
             "inhaleTime": 12,
-            "count": 19
+            "count": 19,
+            "number": 2
           }
         ]
       }

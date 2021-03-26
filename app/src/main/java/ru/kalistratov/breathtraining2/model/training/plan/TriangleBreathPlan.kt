@@ -28,4 +28,8 @@ class TriangleBreathPlan : ATrainingPlan<TriangleTraining>, JsonDeserializer<Tri
         val levels : LinkedList<PlanLevel<TriangleTraining>> = gson.fromJson(levelsJson, listType)
         return TriangleBreathPlan(createPlanInfo(json), levels)
     }
+
+    override fun toString(): String {
+        return "TriangleBreathPlan()"
+    }
 }

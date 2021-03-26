@@ -28,4 +28,10 @@ class SimpleBreathPlan : ATrainingPlan<SimpleTraining>, JsonDeserializer<SimpleB
         val levels : LinkedList<PlanLevel<SimpleTraining>> = gson.fromJson(levelsJson, listType)
         return SimpleBreathPlan(createPlanInfo(json), levels)
     }
+
+    override fun toString(): String {
+        return "SimpleBreathPlan()"
+    }
+
+
 }
