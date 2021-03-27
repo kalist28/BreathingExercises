@@ -7,13 +7,15 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.model.training.ATraining
 import ru.kalistratov.breathtraining2.model.training.TriangleTraining
 import ru.kalistratov.breathtraining2.model.training.plan.TrainingPlans
-import ru.kalistratov.breathtraining2.view.training.engine.EngineActions
+import ru.kalistratov.breathtraining2.view.training.engine.TrainingEngine
 import ru.kalistratov.breathtraining2.view.training.engine.TrainingEngineService
 import java.util.*
 
@@ -41,44 +43,9 @@ class TrainingActivity : AppCompatActivity(R.layout.activity_training)  {
             mService = binder.service()
             mBound = true
 
-            val engineActions = object : EngineActions {
-                override fun onProgress() {
-
-                    TODO("Реализовать метод")
-
-                }
-
-                override fun onPassedSecond(timeLeft: Int) {
-                    findViewById<TextView>(R.id.time).text = timeLeft.toString()
-                }
-
-                override fun onStepName(name: String) {
-                    findViewById<TextView>(R.id.topic).text = name.toUpperCase(Locale.ROOT)
-                }
-
-                override fun onPause() {
-                    TODO("Реализовать метод")
-                }
-
-                override fun onContinue() {
-
-                    TODO("Реализовать метод")
-                }
-
-                override fun onStartEngine() {
-
-                    TODO("Реализовать метод")
-                }
-
-                override fun onStopEngine() {
-
-                    TODO("Реализовать метод")
-
-                }
-
-            }
-
-            training?.let { mService.init(it, engineActions) }
+            training?.let { mService.init(it) }
+            initEngineListeners(mService.engine)
+            initButtonsOnClickListeners(mService.engine)
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -112,7 +79,43 @@ class TrainingActivity : AppCompatActivity(R.layout.activity_training)  {
             bindService(intent, connection, BIND_AUTO_CREATE)
         }
 
+    }
 
+    private fun initButtonsOnClickListeners(engine: TrainingEngine) {
+        findViewById<CardView>(R.id.card_pause_and_play).setOnClickListener {
+            engine.pushPauseOrPlay()
+        }
+
+        findViewById<CardView>(R.id.card_stop).setOnClickListener {
+            engine.stopEngine()
+            finish()
+        }
+    }
+
+    private fun initEngineListeners(engine: TrainingEngine) {
+        engine.onPassedTimeListener = object : TrainingEngine.OnPassedTimeListener {
+            override fun onPassedTime(stepTime: Int, allTime: Int) {
+                findViewById<TextView>(R.id.time).text = stepTime.toString()
+            }
+        }
+
+        engine.onStepListener = object : TrainingEngine.OnStepListener {
+            override fun onStep(newName: String) {
+                findViewById<TextView>(R.id.topic).text = newName.toUpperCase(Locale.ROOT)
+            }
+        }
+
+        engine.onPauseListener = object : TrainingEngine.OnPauseListener {
+            override fun onPause() {
+                findViewById<ImageView>(R.id.pause_and_play).setImageResource(R.drawable.ic_play_arrow)
+            }
+        }
+
+        engine.onContinueListener = object : TrainingEngine.OnContinueListener {
+            override fun onContinue() {
+                findViewById<ImageView>(R.id.pause_and_play).setImageResource(R.drawable.ic_pause)
+            }
+        }
     }
 
     override fun onStop() {

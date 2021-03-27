@@ -71,6 +71,7 @@
             android:layout_gravity="bottom">
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/card_pause_and_play"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center|top"
@@ -141,6 +142,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/card_stop"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="end|bottom"

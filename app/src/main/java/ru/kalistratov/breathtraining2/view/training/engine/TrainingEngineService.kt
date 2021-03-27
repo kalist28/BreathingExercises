@@ -15,14 +15,13 @@ class TrainingEngineService : Service() {
     }
 
     private lateinit var binder: Binder
-    private lateinit var engine: TrainingEngine
     private lateinit var training: ATraining
-    lateinit var engineActions: EngineActions
 
-    fun init(training: ATraining, engineActions: EngineActions) {
-        this.engineActions = engineActions
+    lateinit var engine: TrainingEngine
+
+    fun init(training: ATraining) {
         this.training = training
-        engine = TrainingEngine(engineActions, training)
+        engine = TrainingEngine(training, this)
         engine.startEngine()
     }
 
