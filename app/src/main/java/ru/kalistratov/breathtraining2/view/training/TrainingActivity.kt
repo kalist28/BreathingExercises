@@ -6,11 +6,17 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.ScaleAnimation
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.dynamicanimation.animation.DynamicAnimation
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.model.training.ATraining
 import ru.kalistratov.breathtraining2.model.training.TriangleTraining
@@ -82,8 +88,10 @@ class TrainingActivity : AppCompatActivity(R.layout.activity_training)  {
     }
 
     private fun initButtonsOnClickListeners(engine: TrainingEngine) {
+
         findViewById<CardView>(R.id.card_pause_and_play).setOnClickListener {
             engine.pushPauseOrPlay()
+            Animations.likeAnimation(it)
         }
 
         findViewById<CardView>(R.id.card_stop).setOnClickListener {
@@ -95,6 +103,7 @@ class TrainingActivity : AppCompatActivity(R.layout.activity_training)  {
     private fun initEngineListeners(engine: TrainingEngine) {
         engine.onPassedTimeListener = object : TrainingEngine.OnPassedTimeListener {
             override fun onPassedTime(stepTime: Int, allTime: Int) {
+                findViewById<TextView>(R.id.all_time).text = allTime.toString()
                 findViewById<TextView>(R.id.time).text = stepTime.toString()
             }
         }
@@ -122,6 +131,41 @@ class TrainingActivity : AppCompatActivity(R.layout.activity_training)  {
         super.onStop()
         //unbindService(connection)
         //mBound = false
+    }
+
+    private object Animations {
+        private val TO_NORMAL_DURATION: Long = 1000
+        private val SHOW_DURATION: Long = 1000
+
+        fun likeAnimation(view: View) {
+            view.visibility = View.VISIBLE
+            val animationSet = AnimationSet(false)
+            animationSet.addAnimation(showAnimationSet())
+            view.startAnimation(animationSet)
+        }
+
+        private fun showAnimationSet(): AnimationSet {
+            val showScaleAnimation = ScaleAnimation(
+                    1f, 1.2f, 1f, 1.2f,
+                    Animation.RELATIVE_TO_SELF, 0.3f,
+                    Animation.RELATIVE_TO_SELF, 0.3f)
+            val set = AnimationSet(false)
+            set.addAnimation(showScaleAnimation)
+            set.duration = SHOW_DURATION
+            return set
+        }
+
+        private fun toNormalAnimationSet(): AnimationSet? {
+            val toNormalScaleAnimation = ScaleAnimation(
+                    1.2f, 1f, 1.2f, 1f,
+                    Animation.RELATIVE_TO_SELF, 0.3f,
+                    Animation.RELATIVE_TO_SELF, 0.3f)
+            val set = AnimationSet(false)
+            set.addAnimation(toNormalScaleAnimation)
+            set.duration = TO_NORMAL_DURATION
+            set.startOffset = SHOW_DURATION
+            return set
+        }
     }
 
 

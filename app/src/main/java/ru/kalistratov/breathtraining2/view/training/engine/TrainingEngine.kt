@@ -7,6 +7,7 @@ import android.os.Vibrator
 import android.widget.Toast
 import ru.kalistratov.breathtraining2.model.training.ATraining
 
+
 /**
  * The template for Training`s engines.
  */
