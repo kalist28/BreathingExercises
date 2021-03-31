@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.Training
 import java.lang.reflect.Type
 import java.util.*
 
@@ -66,10 +66,10 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
      * @param lNum is level`s number.
      * @param tNum is training`s number.
      */
-    fun findTrainingInPlan(pId: Byte, lNum: Byte, tNum: Byte) : ATraining? {
+    fun findTrainingInPlan(pId: Byte, lNum: Byte, tNum: Byte) : Training? {
         var plan: ATrainingPlan<*>? = null
         var level: PlanLevel<*>? = null
-        var training: ATraining? = null
+        var training: Training? = null
 
         Log.e("$%#$%#", "findTrainingInPlan: ${pId} , ${lNum} , ${tNum}" )
 

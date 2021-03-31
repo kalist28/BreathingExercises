@@ -9,27 +9,27 @@
         "number": 1,
         "trainings": [
           {
-            "exhaleTime": 19,
-            "inhaleTime": 12,
-            "count": 19,
+            "exhaleTime": 8,
+            "inhaleTime": 8,
+            "count": 6,
             "number": 1
           },
           {
-            "exhaleTime": 19,
-            "inhaleTime": 12,
-            "count": 19,
+            "exhaleTime": 6,
+            "inhaleTime": 6,
+            "count": 6,
             "number": 2
           },
           {
-            "exhaleTime": 19,
-            "inhaleTime": 12,
-            "count": 19,
+            "exhaleTime": 5,
+            "inhaleTime": 5,
+            "count": 3,
             "number": 3
           },
           {
-            "exhaleTime": 19,
-            "inhaleTime": 12,
-            "count": 19,
+            "exhaleTime": 3,
+            "inhaleTime": 3,
+            "count": 3,
             "number": 4
           },
           {
@@ -190,11 +190,11 @@
         "number": 1,
         "trainings": [
           {
-            "exhaleTime": 19,
-            "inhaleTime": 12,
-            "firstPauseTime": 12,
-            "secondPauseTime": 12,
-            "count": 19,
+            "exhaleTime": 8,
+            "inhaleTime": 8,
+            "firstPauseTime": 8,
+            "secondPauseTime": 8,
+            "count": 3,
             "number": 1
           },
           {
@@ -245,10 +245,10 @@
         "number": 1,
         "trainings": [
           {
-            "exhaleTime": 19,
-            "inhaleTime": 12,
-            "pauseTime": 12,
-            "count": 19,
+            "exhaleTime": 10,
+            "inhaleTime": 5,
+            "pauseTime": 6,
+            "count": 3,
             "number": 1
           },
           {

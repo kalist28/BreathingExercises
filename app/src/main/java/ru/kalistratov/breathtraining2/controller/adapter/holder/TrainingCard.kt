@@ -1,18 +1,16 @@
 package ru.kalistratov.breathtraining2.controller.adapter.holder
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.google.android.gms.ads.*
 import ru.kalistratov.breathtraining2.R
-import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.Training
 import ru.kalistratov.breathtraining2.model.training.SimpleTraining
 import ru.kalistratov.breathtraining2.model.training.SquareTraining
 import ru.kalistratov.breathtraining2.model.training.TriangleTraining
 import java.lang.Exception
-import java.util.*
 
 /**
  * The class of training`s card view.
@@ -66,7 +64,7 @@ open class TrainingCard(val view: View) : DoubleStatusView(view) {
      *
      * @param t is training.
      */
-    fun setTrainingInfo(t: ATraining) {
+    fun setTrainingInfo(t: Training) {
         init()
         time.text   = t.getTime().toString()
         topic.text  = t.name

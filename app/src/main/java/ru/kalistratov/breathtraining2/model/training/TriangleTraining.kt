@@ -16,26 +16,27 @@ class TriangleTraining(name: String,
                        inhaleTime: Byte,
                        exhaleTime: Byte,
                        val pauseTime : Byte)
-    : ATraining(name, count, number, inhaleTime, exhaleTime){
+    : Training(name, count, number, inhaleTime, exhaleTime){
 
     override fun getTime(): Int {
         return (inhaleTime + exhaleTime + pauseTime) * count
     }
 
-    override fun getStepName(index: Int): String {
+    override fun getStepInfo(index: Int): Step {
         return when(index) {
-            0 -> INHALE
-            1 -> PAUSE
-            2 -> EXHALE
-            else -> getStepName(index % 3)
+            0 -> Step.INHALE
+            1 -> Step.PAUSE
+            2 -> Step.EXHALE
+            else -> getStepInfo(index % 3)
         }
     }
 
     override fun getStepTime(index: Int): Byte {
         return when(index) {
             0 -> inhaleTime
-            1 -> exhaleTime
-            else -> getStepTime(index % 2)
+            1 -> pauseTime
+            2 -> exhaleTime
+            else -> getStepTime(index % 3)
         }
     }
 }

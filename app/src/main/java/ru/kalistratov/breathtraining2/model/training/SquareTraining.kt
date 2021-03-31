@@ -18,26 +18,29 @@ class SquareTraining(name: String,
                      exhaleTime: Byte,
                      val firstPauseTime : Byte,
                      val secondPauseTime : Byte):
-        ATraining(name, count, number, inhaleTime, exhaleTime) {
+        Training(name, count, number, inhaleTime, exhaleTime) {
 
     override fun getTime(): Int {
         return (inhaleTime + exhaleTime + firstPauseTime + secondPauseTime) * count
     }
 
-    override fun getStepName(index: Int): String {
+    override fun getStepInfo(index: Int): Step {
         return when(index) {
-            0 -> INHALE
-            1 -> PAUSE
-            2 -> EXHALE
-            3 -> PAUSE
-            else -> getStepName(index % 4)
+            0 -> Step.INHALE
+            1 -> Step.PAUSE
+            2 -> Step.EXHALE
+            3 -> Step.PAUSE
+            else -> getStepInfo(index % 4)
         }
     }
+
     override fun getStepTime(index: Int): Byte {
         return when(index) {
             0 -> inhaleTime
-            1 -> exhaleTime
-            else -> getStepTime(index % 2)
+            1 -> firstPauseTime
+            2 -> exhaleTime
+            3 -> secondPauseTime
+            else -> getStepTime(index % 4)
         }
     }
 }

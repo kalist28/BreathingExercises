@@ -1,5 +1,6 @@
 package ru.kalistratov.breathtraining2.view.main
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

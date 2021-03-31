@@ -5,13 +5,14 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.widget.Toast
-import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.controller.adapter.TrainingVoiceManager
+import ru.kalistratov.breathtraining2.model.training.Training
 
 
 /**
  * The template for Training`s engines.
  */
-class TrainingEngine(val training: ATraining,
+class TrainingEngine(val training: Training,
                      val context: Context) {
 
     /**
@@ -66,6 +67,11 @@ class TrainingEngine(val training: ATraining,
     private var isStop: Boolean = false
 
     /**
+     * True if the vibrator is on.
+     */
+    private var isVibration: Boolean = true
+
+    /**
      * Remaining number of seconds for this step (breath intake).
      */
     private var stepTime: Int = 0
@@ -81,24 +87,26 @@ class TrainingEngine(val training: ATraining,
      */
     private var allTime = training.getTime()
 
+    /**
+     * Method to call a command for pause or continue engine.
+     */
+    fun pushPauseOrPlay() {
+        if (isPause) continueEngine()
+        else pauseEngine()
+    }
+
+    /**
+     * Method to call a command for on or off vibrator.
+     */
+    fun pushOnOrOffVibrator() : Boolean {
+        isVibration = !isVibration
+        return isVibration
+    }
+
     /** Engine starting. */
     fun startEngine() {
         startTimer()
         onStartEngineListener?.onStartEngine()
-    }
-
-    /** Suspend the engine. */
-    fun pauseEngine() {
-        isPause = true
-        onPauseListener?.onPause()
-        Toast.makeText(context, "ENGINE PAUSE", Toast.LENGTH_LONG).show()
-    }
-
-    /** Continue from where engine stopped. */
-    fun continueEngine() {
-        isPause = false
-        onContinueListener?.onContinue()
-        Toast.makeText(context, "ENGINE CONT", Toast.LENGTH_LONG).show()
     }
 
     /** Engine stopping. */
@@ -108,18 +116,27 @@ class TrainingEngine(val training: ATraining,
         Toast.makeText(context, "ENGINE STOP", Toast.LENGTH_LONG).show()
     }
 
-    fun pushPauseOrPlay() {
-        if (isPause) continueEngine()
-        else pauseEngine()
+    /** Suspend the engine. */
+    private fun pauseEngine() {
+        isPause = true
+        onPauseListener?.onPause()
+        Toast.makeText(context, "ENGINE PAUSE", Toast.LENGTH_LONG).show()
+    }
+
+    /** Continue from where engine stopped. */
+    private fun continueEngine() {
+        isPause = false
+        onContinueListener?.onContinue()
+        Toast.makeText(context, "ENGINE CONT", Toast.LENGTH_LONG).show()
     }
 
     /** The even when the time for the respiratory intake ends. */
     private fun onProgress() {
-        val step = training.getStepName(stepsCount)
+        val step = training.getStepInfo(stepsCount)
         stepTime += training.getStepTime(stepsCount)
-        onStepListener?.onStep(step)
+        onStepListener?.onStep(step.stepName)
 
-        if (vibrator.hasVibrator()) {
+        if (vibrator.hasVibrator() && isVibration) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 // API 26
                 vibrator.vibrate(
@@ -141,6 +158,8 @@ class TrainingEngine(val training: ATraining,
         onPassedTimeListener?.onPassedTime(stepTime, allTime)
     }
 
+
+
     private fun startTimer() {
         stepTime += training.getStepTime(stepsCount)
         Thread {
@@ -150,6 +169,7 @@ class TrainingEngine(val training: ATraining,
                 if (isPause) continue
                 Thread.sleep(500)
                 stepTime--
+                TrainingVoiceManager.actingFollowingActions(stepTime, training, stepsCount, context)
                 if (stepTime < 0) throw Exception("Timer step error")
                 if (stepTime == 0) {
                     stepsCount++

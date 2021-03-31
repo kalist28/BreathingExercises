@@ -2,5 +2,6 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="IncompatibleAPI" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="JoinDeclarationAndAssignment" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
   </profile>
 </component>

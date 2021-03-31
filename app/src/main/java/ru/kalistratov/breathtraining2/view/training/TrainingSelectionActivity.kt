@@ -13,7 +13,6 @@ import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.LevelSelectionAdapter
 import ru.kalistratov.breathtraining2.controller.adapter.OnLevelSelectListener
 import ru.kalistratov.breathtraining2.controller.adapter.TrainingSelectionAdapter
-import ru.kalistratov.breathtraining2.model.training.ATraining
 import ru.kalistratov.breathtraining2.model.training.plan.*
 import java.lang.Exception
 import java.util.*

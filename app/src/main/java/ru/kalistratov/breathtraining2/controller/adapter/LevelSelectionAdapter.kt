@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.holder.LevelCard
-import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.Training
 import ru.kalistratov.breathtraining2.model.training.plan.PlanLevel
 import java.util.*
 
 fun interface OnLevelSelectListener {
-    fun onSelect(level: PlanLevel<out ATraining>)
+    fun onSelect(level: PlanLevel<out Training>)
 }
 
 /**
@@ -22,7 +22,7 @@ fun interface OnLevelSelectListener {
  * @property levels is a training levels list.
  * @property context is activity context.
  */
-class LevelSelectionAdapter(private val levels: LinkedList<out PlanLevel<out ATraining>>,
+class LevelSelectionAdapter(private val levels: LinkedList<out PlanLevel<out Training>>,
                             private val context: Context?):
         RecyclerView.Adapter<LevelCard>() {
 

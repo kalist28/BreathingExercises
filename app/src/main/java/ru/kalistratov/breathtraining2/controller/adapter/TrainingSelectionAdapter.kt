@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.holder.TrainingCard
-import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.Training
 import ru.kalistratov.breathtraining2.model.training.SimpleTraining
 import ru.kalistratov.breathtraining2.view.training.TrainingActivity
 import java.util.*
 
-class TrainingSelectionAdapter(private val trainings: LinkedList<ATraining>,
+class TrainingSelectionAdapter(private val trainings: LinkedList<Training>,
                                val levelNum: Byte,
                                val planId: Byte,
                                val context: Context):

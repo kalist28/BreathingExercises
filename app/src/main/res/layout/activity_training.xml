@@ -4,6 +4,15 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        ads:adSize="FLUID"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
+
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -21,7 +30,6 @@
                 android:id="@+id/topic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ВДОХ"
                 android:textStyle="bold"
                 android:textSize="35sp"
                 android:gravity="center|center_horizontal"
@@ -53,7 +61,6 @@
                         android:id="@+id/time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="54"
                         android:textStyle="bold"
                         android:textSize="80sp"
                         android:gravity="center"
@@ -70,7 +77,6 @@
                 android:id="@+id/all_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="4:12"
                 android:textStyle="bold"
                 android:textSize="29sp"
                 android:gravity="center"
@@ -90,6 +96,7 @@
 
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/card_on_and_off"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="start|center_vertical"
@@ -104,9 +111,10 @@
                     android:padding="15dp"
                     android:background="@color/homeLight10">
                 <ImageView
+                        android:id="@+id/img_vibration"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_vibration"
+                        android:src="@drawable/ic_vibration_off"
                         app:tint="@color/home" />
             </FrameLayout>
         </androidx.cardview.widget.CardView>

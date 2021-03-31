@@ -1,12 +1,12 @@
 package ru.kalistratov.breathtraining2.model.training.plan
 
-import ru.kalistratov.breathtraining2.model.training.ATraining
+import ru.kalistratov.breathtraining2.model.training.Training
 import java.util.*
 
 /**
  * The abstract class of training plan.
  */
-abstract class ATrainingPlan<E : ATraining> (
+abstract class ATrainingPlan<E : Training> (
         id: Byte, name: String, description: String, type: Byte)
     : APlan(id, name, description, type) {
 
