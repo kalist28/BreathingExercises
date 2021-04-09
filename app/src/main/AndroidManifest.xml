@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.kalistratov.breathtraining2">
+    package="ru.kalistratov.breathtraining2" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -11,16 +12,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BreathTraining2">
+        android:theme="@style/Theme.BreathTraining2" >
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3171253839600710~8994034447"/>
+            android:value="ca-app-pub-3171253839600710~8994034447" />
 
-        <service android:name=".view.training.engine.TrainingEngineService"/>
+        <service
+            android:name=".view.training.engine.TrainingEngineService"
+            android:enabled="true"
+            android:exported="false" />
 
-        <activity android:name=".view.training.TrainingActivity"/>
-        <activity android:name=".view.training.TrainingSelectionActivity"/>
+        <activity
+            android:name=".view.training.TrainingActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".view.training.TrainingSelectionActivity" />
         <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

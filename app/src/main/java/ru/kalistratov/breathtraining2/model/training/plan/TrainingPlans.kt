@@ -71,7 +71,7 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
         var level: PlanLevel<*>? = null
         var training: Training? = null
 
-        Log.e("$%#$%#", "findTrainingInPlan: ${pId} , ${lNum} , ${tNum}" )
+        Log.e("$%#$%#", "findTrainingInPlan: $pId , $lNum , $tNum" )
 
         for (p in plans) {
             if (p.id == pId) {
@@ -80,8 +80,6 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
             }
         }
 
-        Log.e("$%#$%#", plan.toString() )
-
         for (l in plan?.levels!!) {
             if (l.number == lNum) {
                 level = l
@@ -89,16 +87,12 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
             }
         }
 
-        Log.e("$%#$%#", level.toString() )
-
         for (t in level?.trainings!!) {
             if (t.number == tNum) {
                 training = t
                 break
             }
         }
-
-        Log.e("$%#$%#", training.toString() )
 
         return training
     }

@@ -1,6 +1,5 @@
 package ru.kalistratov.breathtraining2.view.main
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,7 +12,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationBar: ChipNavigationBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         TrainingPlans.init(this)
+
         setContentView(R.layout.activity_main)
         navigationBar = findViewById(R.id.navigationBar)
         navigationBar.setOnItemSelectedListener {

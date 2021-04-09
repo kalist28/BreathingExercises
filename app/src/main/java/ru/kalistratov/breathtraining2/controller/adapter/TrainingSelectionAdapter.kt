@@ -51,9 +51,9 @@ class TrainingSelectionAdapter(private val trainings: LinkedList<Training>,
         holder.card.setOnClickListener {
             val intent = Intent(context, TrainingActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra(TrainingActivity.EN_PLAN_ID, planId)
-            intent.putExtra(TrainingActivity.EN_LEVEL_NUMBER, levelNum)
-            intent.putExtra(TrainingActivity.EN_TRAINING_NUMBER, trainings[position].number)
+            intent.putExtra(TrainingActivity.EXTRA_PLAN_ID, planId)
+            intent.putExtra(TrainingActivity.EXTRA_LEVEL_NUMBER, levelNum)
+            intent.putExtra(TrainingActivity.EXTRA_TRAINING_NUMBER, trainings[position].number)
             context.startActivity(intent)
         }
 

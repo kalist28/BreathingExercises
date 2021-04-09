@@ -5,9 +5,8 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.widget.Toast
-import ru.kalistratov.breathtraining2.controller.adapter.TrainingVoiceManager
+import ru.kalistratov.breathtraining2.controller.VoiceManager
 import ru.kalistratov.breathtraining2.model.training.Training
-
 
 /**
  * The template for Training`s engines.
@@ -30,6 +29,11 @@ class TrainingEngine(val training: Training,
      * Listener used to dispatch engine started event.
      */
     var onStartEngineListener: OnStartEngineListener? = null
+
+    /**
+     * Listener used to dispatch engine ended event.
+     */
+    var onEndEngineListener: OnEndEngineListener? = null
 
     /**
      * Listener used to dispatch engine stop event.
@@ -90,7 +94,7 @@ class TrainingEngine(val training: Training,
     /**
      * Method to call a command for pause or continue engine.
      */
-    fun pushPauseOrPlay() {
+    fun pushPauseOrContinue() {
         if (isPause) continueEngine()
         else pauseEngine()
     }
@@ -111,8 +115,8 @@ class TrainingEngine(val training: Training,
 
     /** Engine stopping. */
     fun stopEngine() {
+        if (!isStop) onStopEngineListener?.onStopEngine()
         isStop = true
-        onStopEngineListener?.onStopEngine()
         Toast.makeText(context, "ENGINE STOP", Toast.LENGTH_LONG).show()
     }
 
@@ -155,13 +159,13 @@ class TrainingEngine(val training: Training,
 
     /** Event after one second. */
     private fun onPassedSecond() {
-        onPassedTimeListener?.onPassedTime(stepTime, allTime)
+        onPassedTimeListener?.onPassedTime(stepTime, formatTime(allTime))
     }
 
-
-
+    /** Start engine timer. */
     private fun startTimer() {
         stepTime += training.getStepTime(stepsCount)
+        VoiceManager.playVoice(context, VoiceManager.Voice.INHALE)
         Thread {
             while (allTime-- != 0) {
                 Thread.sleep(500)
@@ -169,7 +173,7 @@ class TrainingEngine(val training: Training,
                 if (isPause) continue
                 Thread.sleep(500)
                 stepTime--
-                TrainingVoiceManager.actingFollowingActions(stepTime, training, stepsCount, context)
+                VoiceManager.actingFollowingActions(stepTime, training, stepsCount, context)
                 if (stepTime < 0) throw Exception("Timer step error")
                 if (stepTime == 0) {
                     stepsCount++
@@ -177,8 +181,22 @@ class TrainingEngine(val training: Training,
                 }
                 onPassedSecond()
             }
-            onStopEngineListener?.onStopEngine()
+            if (allTime == 0) onEndEngineListener?.onEndEngine()
         }.start()
+    }
+
+    /**
+     * Formatting seconds to usual time format (mm:ss).
+     *
+     * @param time - all time in ms.
+     * @return time in usual format.
+     */
+    private fun formatTime(time: Int): String {
+        val del = 60
+        val min = (time / del).toString()
+        val sec = time % del
+        val secF = if (sec < 10) "0${sec}" else sec
+        return "$min:$secF"
     }
 
     /**
@@ -189,6 +207,16 @@ class TrainingEngine(val training: Training,
          * Called when a engine started.
          */
         fun onStartEngine()
+    }
+
+    /**
+     * Interface definition for a callback to be invoked when a engine is end.
+     */
+    interface OnEndEngineListener {
+        /**
+         * Called when a engine started.
+         */
+        fun onEndEngine()
     }
 
     /**
@@ -207,8 +235,11 @@ class TrainingEngine(val training: Training,
     interface OnPassedTimeListener {
         /**
          * Called when a engine worked one second.
+         *
+         * @param stepTime - the remaining time for the parameter.
+         * @param formatTime - usual format time.
          */
-        fun onPassedTime(stepTime: Int, allTime: Int)
+        fun onPassedTime(stepTime: Int, formatTime: String)
     }
 
     /**

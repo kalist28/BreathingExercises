@@ -1,7 +1,5 @@
 package ru.kalistratov.breathtraining2.model.training
 
-import ru.kalistratov.breathtraining2.R
-
 /**
  * The simple class of training.
  *
@@ -18,12 +16,11 @@ abstract class Training(name: String,
      * Describes all possible activities in a workout.
      */
     enum class Step(
-        public val stepName: String,
-        public val soundId: Int
+        val stepName: String,
     ) {
-        INHALE("вдох", R.raw.inhale),
-        EXHALE("выдох", R.raw.exhale),
-        PAUSE("пауза", R.raw.pause)
+        INHALE("вдох"),
+        EXHALE("выдох"),
+        PAUSE("пауза")
     }
 
     @Suppress("SENSELESS_COMPARISON")
