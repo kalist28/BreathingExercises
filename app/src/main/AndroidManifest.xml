@@ -26,7 +26,11 @@
         <activity
             android:name=".view.training.TrainingActivity"
             android:launchMode="singleTask" />
+
+        <activity android:name=".view.training.FinishingActivity"/>
+
         <activity android:name=".view.training.TrainingSelectionActivity" />
+
         <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

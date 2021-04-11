@@ -8,24 +8,31 @@ package ru.kalistratov.breathtraining2.model.training
  * [inhaleTime], [firstPauseTime], [exhaleTime], [secondPauseTime].
  * All time in seconds.
  *
- * @property inhaleTime the time in seconds of inhale.
- * @property exhaleTime the exhale`s time in seconds.
+ * @param name the name of training.
+ * @param number the number of training.
+ * @param inhaleTime the inhale`s time in seconds.
+ * @param exhaleTime the exhale`s time in seconds.
+ * @param count the count of repetitions.
+ * @property firstPauseTime the time in seconds pause after inhale.
+ * @property secondPauseTime the time in seconds pause after exhale.
  */
-class SquareTraining(name: String,
-                     count: Byte,
-                     number: Byte,
-                     inhaleTime: Byte,
-                     exhaleTime: Byte,
-                     val firstPauseTime : Byte,
-                     val secondPauseTime : Byte):
-        Training(name, count, number, inhaleTime, exhaleTime) {
+class SquareTraining(
+    name: String,
+    count: Byte,
+    number: Byte,
+    inhaleTime: Byte,
+    exhaleTime: Byte,
+    val firstPauseTime: Byte,
+    val secondPauseTime: Byte
+) :
+    Training(name, number, inhaleTime, exhaleTime, count) {
 
     override fun getTime(): Int {
         return (inhaleTime + exhaleTime + firstPauseTime + secondPauseTime) * count
     }
 
     override fun getStepInfo(index: Int): Step {
-        return when(index) {
+        return when (index) {
             0 -> Step.INHALE
             1 -> Step.PAUSE
             2 -> Step.EXHALE
@@ -35,7 +42,7 @@ class SquareTraining(name: String,
     }
 
     override fun getStepTime(index: Int): Byte {
-        return when(index) {
+        return when (index) {
             0 -> inhaleTime
             1 -> firstPauseTime
             2 -> exhaleTime

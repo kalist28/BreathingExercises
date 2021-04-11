@@ -7,6 +7,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ru.kalistratov.breathtraining2.R
 
+/**
+ * The fragment which own application settings.
+ */
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

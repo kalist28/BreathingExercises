@@ -8,22 +8,24 @@ package ru.kalistratov.breathtraining2.model.training
  * [inhaleTime], [pauseTime], [exhaleTime].
  * All time in seconds.
  *
- * @property pauseTime is pause between inhale and exhale.
+ * @param name the name of training.
+ * @param number the number of training.
+ * @param inhaleTime the inhale`s time in seconds.
+ * @param exhaleTime the exhale`s time in seconds.
+ * @param count the count of repetitions.
+ * @property pauseTime is pause between inhale and exhale in seconds.
  */
-class TriangleTraining(name: String,
-                       count: Byte,
-                       number: Byte,
-                       inhaleTime: Byte,
-                       exhaleTime: Byte,
-                       val pauseTime : Byte)
-    : Training(name, count, number, inhaleTime, exhaleTime){
-
-    override fun getTime(): Int {
-        return (inhaleTime + exhaleTime + pauseTime) * count
-    }
+class TriangleTraining(
+    name: String,
+    count: Byte,
+    number: Byte,
+    inhaleTime: Byte,
+    exhaleTime: Byte,
+    val pauseTime: Byte
+) : Training(name, number, inhaleTime, exhaleTime, count) {
 
     override fun getStepInfo(index: Int): Step {
-        return when(index) {
+        return when (index) {
             0 -> Step.INHALE
             1 -> Step.PAUSE
             2 -> Step.EXHALE
@@ -32,11 +34,15 @@ class TriangleTraining(name: String,
     }
 
     override fun getStepTime(index: Int): Byte {
-        return when(index) {
+        return when (index) {
             0 -> inhaleTime
             1 -> pauseTime
             2 -> exhaleTime
             else -> getStepTime(index % 3)
         }
+    }
+
+    override fun getTime(): Int {
+        return (inhaleTime + exhaleTime + pauseTime) * count
     }
 }

@@ -30,9 +30,9 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
         plans = LinkedList()
         for(obj in array) {
             val plan = when (obj.asJsonObject.get("type").asByte){
-                APlan.SIMPLE     -> g.fromJson(obj, SimpleBreathPlan::class.java)
-                APlan.SQUARE     -> g.fromJson(obj, SquareBreathPlan::class.java)
-                APlan.TRIANGLE   -> g.fromJson(obj, TriangleBreathPlan::class.java)
+                Plan.SIMPLE     -> g.fromJson(obj, SimpleBreathPlan::class.java)
+                Plan.SQUARE     -> g.fromJson(obj, SquareBreathPlan::class.java)
+                Plan.TRIANGLE   -> g.fromJson(obj, TriangleBreathPlan::class.java)
                 else -> throw Exception("unknown training type.")
             } ?: continue
             plans.add(plan)
@@ -57,7 +57,7 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
     }
 
     /** The list pf level`s trainings. */
-    var plans : LinkedList<APlan> = LinkedList()
+    var plans : LinkedList<Plan> = LinkedList()
 
     /**
      * Find the training by: plan`s id, level`s number and training`s number.
@@ -67,7 +67,7 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
      * @param tNum is training`s number.
      */
     fun findTrainingInPlan(pId: Byte, lNum: Byte, tNum: Byte) : Training? {
-        var plan: ATrainingPlan<*>? = null
+        var plan: TrainingPlan<*>? = null
         var level: PlanLevel<*>? = null
         var training: Training? = null
 
@@ -75,7 +75,7 @@ object TrainingPlans : JsonDeserializer<TrainingPlans> {
 
         for (p in plans) {
             if (p.id == pId) {
-                plan = p as ATrainingPlan<*>
+                plan = p as TrainingPlan<*>
                 break
             }
         }

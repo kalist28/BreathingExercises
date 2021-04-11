@@ -7,10 +7,18 @@ import com.google.gson.JsonElement
 /**
  * The simple class of plan.
  *
+ * @property id the plan`s id.
  * @property name the name of training plan.
  * @property description the description of training plan.
+ * @property type the type of trainings in plan.
  */
-abstract class APlan (val id: Byte, val name: String, val description: String, val type: Byte) {
+abstract class Plan (val id: Byte, val name: String, val description: String, val type: Byte) {
+
+    /**
+     * Total count levels in plan, accessible for the user.
+     *
+     * @return total count of levels in plan.
+     */
     abstract fun levelsCount() : Int
 
     companion object {
@@ -32,14 +40,14 @@ abstract class APlan (val id: Byte, val name: String, val description: String, v
          *
          * @param json is json element.
          */
-        fun createPlanInfo(json: JsonElement) : PlanInfo {
+        fun createPlanInfo(json: JsonElement) : PlanNode {
             val jo = json.asJsonObject
 
             val id              = gson.fromJson(jo.get("id"), Byte::class.java)
             val type            = gson.fromJson(jo.get("type"), Byte::class.java)
             val name            = gson.fromJson(jo.get("name"), String::class.java)
             val description     = gson.fromJson(jo.get("description"), String::class.java)
-            return PlanInfo(id, name, description, type)
+            return PlanNode(id, name, description, type)
         }
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,7 +17,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import ru.kalistratov.breathtraining2.R
-import ru.kalistratov.breathtraining2.controller.adapter.VoiceManager
+import ru.kalistratov.breathtraining2.controller.VoiceManager
 import ru.kalistratov.breathtraining2.model.training.Training
 import ru.kalistratov.breathtraining2.model.training.plan.TrainingPlans
 import ru.kalistratov.breathtraining2.view.training.engine.TrainingEngine
@@ -174,6 +175,14 @@ class TrainingActivity : AppCompatActivity(R.layout.activity_training) {
 
         service.onStopEngineListener = object : TrainingEngine.OnStopEngineListener {
             override fun onStopEngine() {
+                finish()
+            }
+        }
+
+        service.onEndEngineListener = object : TrainingEngine.OnEndEngineListener {
+            override fun onEndEngine() {
+                Log.e("TAG+++++++++++", "onEndEngine: ", )
+                startActivity(Intent(baseContext, FinishingActivity::class.java))
                 finish()
             }
         }

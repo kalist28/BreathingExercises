@@ -102,7 +102,6 @@ class TrainingEngineService : Service() {
 
     override fun onDestroy() {
         stopForeground(true)
-        engine.stopEngine()
         super.onDestroy()
     }
 

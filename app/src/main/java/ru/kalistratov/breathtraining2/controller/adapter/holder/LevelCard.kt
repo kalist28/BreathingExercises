@@ -50,14 +50,14 @@ class LevelCard(private val view: View,
     }
 
     /** Set view`s deactivated status. */
-    public override fun deactivate() {
+    override fun deactivate() {
         setVisibleForFrames(true)
         card.layoutParams.width = adapter.convert(125f).toInt()
         card.layoutParams.height = adapter.convert(125f).toInt()
     }
 
     /** Set view`s activated status.  */
-    public override fun activate() {
+    override fun activate() {
         setVisibleForFrames(false)
         card.layoutParams.width = adapter.convert(140f).toInt()
         card.layoutParams.height = adapter.convert(140f).toInt()

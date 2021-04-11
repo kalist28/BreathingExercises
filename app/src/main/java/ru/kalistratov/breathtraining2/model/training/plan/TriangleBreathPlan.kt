@@ -4,17 +4,21 @@ import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
+import ru.kalistratov.breathtraining2.model.training.SimpleTraining
 import ru.kalistratov.breathtraining2.model.training.TriangleTraining
 import java.lang.reflect.Type
 import java.util.*
 
-class TriangleBreathPlan : ATrainingPlan<TriangleTraining>, JsonDeserializer<TriangleBreathPlan> {
+/**
+ * The trainings plan based on [TriangleTraining].
+ */
+class TriangleBreathPlan : TrainingPlan<TriangleTraining>, JsonDeserializer<TriangleBreathPlan> {
 
     constructor(): super()
 
-    constructor(planInfo: PlanInfo,
+    constructor(planNode: PlanNode,
                 levels : LinkedList<PlanLevel<TriangleTraining>>)
-            : super (planInfo, levels)
+            : super (planNode, levels)
 
     override fun deserialize(
             json: JsonElement?,

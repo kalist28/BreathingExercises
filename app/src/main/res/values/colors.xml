@@ -13,11 +13,10 @@
     <color name="background_settings">#084CAF50</color>
 
 
-    <color name="topic_bar">#114975</color>
+    <color name="topic_bar">#01579B</color>
     <color name="home">#2196F3</color>
-    <color name="homeLight10">#1A2196F3</color>
-    <color name="homeLight50">#BF2196F3</color>
-    <color name="details">#673AB7</color>
-    <color name="person">#E91E63</color>
+    <color name="home_lite">#BBDEFB</color>
+    <color name="home_dark">#1565C0</color>
+    <color name="person">#F44336</color>
     <color name="settings">#4CAF50</color>
 </resources>

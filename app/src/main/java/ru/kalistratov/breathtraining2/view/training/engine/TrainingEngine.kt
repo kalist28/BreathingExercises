@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.widget.Toast
 import ru.kalistratov.breathtraining2.controller.VoiceManager
 import ru.kalistratov.breathtraining2.model.training.Training
@@ -13,7 +14,7 @@ import ru.kalistratov.breathtraining2.model.training.Training
  */
 class TrainingEngine(val training: Training,
                      val context: Context) {
-
+    val TAG = javaClass.simpleName
     /**
      * The phones` vibrator.
      * It is needed for additional notification of a change in breath intake.
@@ -115,9 +116,12 @@ class TrainingEngine(val training: Training,
 
     /** Engine stopping. */
     fun stopEngine() {
-        if (!isStop) onStopEngineListener?.onStopEngine()
+        if (isStop) return
+        if (!isStop && allTime <= 0)
+            onEndEngineListener?.onEndEngine()
+        else
+            onStopEngineListener?.onStopEngine()
         isStop = true
-        Toast.makeText(context, "ENGINE STOP", Toast.LENGTH_LONG).show()
     }
 
     /** Suspend the engine. */
@@ -173,7 +177,7 @@ class TrainingEngine(val training: Training,
                 if (isPause) continue
                 Thread.sleep(500)
                 stepTime--
-                VoiceManager.actingFollowingActions(stepTime, training, stepsCount, context)
+                if (allTime > 0) VoiceManager.actingFollowingActions(stepTime, training, stepsCount, context)
                 if (stepTime < 0) throw Exception("Timer step error")
                 if (stepTime == 0) {
                     stepsCount++
@@ -181,7 +185,7 @@ class TrainingEngine(val training: Training,
                 }
                 onPassedSecond()
             }
-            if (allTime == 0) onEndEngineListener?.onEndEngine()
+            if (allTime < 0) onEndEngineListener?.onEndEngine()
         }.start()
     }
 

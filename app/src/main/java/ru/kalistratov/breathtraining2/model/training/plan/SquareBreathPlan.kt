@@ -8,13 +8,16 @@ import ru.kalistratov.breathtraining2.model.training.SquareTraining
 import java.lang.reflect.Type
 import java.util.*
 
-class SquareBreathPlan : ATrainingPlan<SquareTraining>, JsonDeserializer<SquareBreathPlan> {
+/**
+ * The trainings plan based on [SquareTraining].
+ */
+class SquareBreathPlan : TrainingPlan<SquareTraining>, JsonDeserializer<SquareBreathPlan> {
 
     constructor(): super()
 
-    constructor(planInfo: PlanInfo,
+    constructor(planNode: PlanNode,
                 levels : LinkedList<PlanLevel<SquareTraining>>)
-            : super (planInfo, levels)
+            : super (planNode, levels)
 
     override fun deserialize(
             json: JsonElement?,

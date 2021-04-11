@@ -12,7 +12,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val topic = view.findViewById<TextView>(R.id.topic)
-        topic.setTextColor(resources.getColor(R.color.details))
+        //topic.setTextColor(resources.getColor(R.color.details))
         topic.text = resources.getString(R.string.details)
     }
 }

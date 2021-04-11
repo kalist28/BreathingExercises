@@ -5,20 +5,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import ru.kalistratov.breathtraining2.R
+import ru.kalistratov.breathtraining2.controller.UserPreferences
 import ru.kalistratov.breathtraining2.model.training.plan.TrainingPlans
 
+/**
+ * The main activity of app.
+ *
+ * On this a menu for choosing between [PlanSelectionFragment],
+ * [PersonFragment] and [SettingsFragment].
+ */
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-class MainActivity : AppCompatActivity() {
     private lateinit var navigationBar: ChipNavigationBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         TrainingPlans.init(this)
+        UserPreferences.init(this)
 
-        setContentView(R.layout.activity_main)
         navigationBar = findViewById(R.id.navigationBar)
         navigationBar.setOnItemSelectedListener {
-            when(it) {
+            when (it) {
                 R.id.home -> loadFragment(PlanSelectionFragment())
                 //R.id.details -> loadFragment(DetailsFragment())
                 R.id.person -> loadFragment(PersonFragment())
@@ -27,9 +35,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         navigationBar.setItemSelected(R.id.home)
-
     }
 
+    /**
+     * Load fragment on frame.
+     *
+     * @param fragment the fragment which need load on frame.
+     */
     private fun loadFragment(fragment: Fragment) {
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.fragment_content, fragment)

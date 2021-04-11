@@ -1,155 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         ads:adSize="FLUID"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
     <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:padding="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:padding="10dp">
 
         <ImageButton
-                android:id="@+id/backspace"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_gravity="top|left"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_backspace"/>
+            android:id="@+id/backspace"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="top|left"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_backspace" />
 
         <TextView
-                android:id="@+id/topic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="35sp"
-                android:gravity="center|center_horizontal"
-                android:layout_gravity="bottom|center"
-                android:textColor="@color/home"/>
+            android:id="@+id/topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:gravity="center|center_horizontal"
+            android:textColor="@color/home"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
     </FrameLayout>
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_marginBottom="80dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-                android:id="@+id/step_card"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                app:cardCornerRadius="200dp">
+            android:id="@+id/step_card"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="200dp">
 
             <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/home">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/home">
 
                 <TextView
-                        android:id="@+id/time"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="80sp"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:textColor="@color/white"
-                        android:shadowColor="#7F000000"
-                        android:shadowDx="3"
-                        android:shadowDy="4"
-                        android:shadowRadius="5" />
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:shadowColor="#7F000000"
+                    android:shadowDx="3"
+                    android:shadowDy="4"
+                    android:shadowRadius="5"
+                    android:textColor="@color/white"
+                    android:textSize="80sp"
+                    android:textStyle="bold" />
             </FrameLayout>
         </androidx.cardview.widget.CardView>
 
         <TextView
-                android:id="@+id/all_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="29sp"
-                android:gravity="center"
-                android:paddingTop="20dp"
-                android:layout_gravity="bottom"
-                android:textColor="@color/homeLight50"
-                />
+            android:id="@+id/all_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:textColor="@color/home"
+            android:textSize="29sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:layout_gravity="bottom"
-            android:paddingBottom="50dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="30dp"
+        android:paddingBottom="50dp">
 
 
         <androidx.cardview.widget.CardView
-                android:id="@+id/card_on_and_off"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="start|center_vertical"
-                app:cardCornerRadius="200dp"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground">
+            android:id="@+id/card_on_and_off"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="200dp">
+
             <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/home_lite"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/img_vibration"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="15dp"
-                    android:background="@color/homeLight10">
-                <ImageView
-                        android:id="@+id/img_vibration"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_vibration_off"
-                        app:tint="@color/home" />
+                    android:src="@drawable/ic_vibration_off"
+                    app:tint="@color/home" />
             </FrameLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-                android:id="@+id/card_pause_and_play"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center|center_horizontal"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="200dp"
-                app:cardElevation="5dp">
+            android:id="@+id/card_pause_and_play"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="200dp"
+            app:cardElevation="5dp">
 
             <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:cardCornerRadius="200dp"
-                    android:layout_margin="15dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="200dp">
 
                 <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/home">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/home">
 
 
                     <ImageView
-                            android:id="@+id/pause_and_play"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_pause"
-                            android:layout_margin="10dp"
-                            app:tint="@color/white" />
+                        android:id="@+id/pause_and_play"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/ic_pause"
+                        app:tint="@color/white" />
                 </FrameLayout>
 
             </androidx.cardview.widget.CardView>
@@ -157,25 +157,27 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-                android:id="@+id/card_stop"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="end|center_vertical"
-                app:cardCornerRadius="200dp"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground">
+            android:id="@+id/card_stop"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="200dp">
+
             <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/home_lite"
+                android:padding="15dp">
+
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="15dp"
-                    android:background="@color/homeLight10">
-                <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_stop"
-                        app:tint="@color/home" />
+                    android:src="@drawable/ic_stop"
+                    app:tint="@color/home" />
             </FrameLayout>
         </androidx.cardview.widget.CardView>
 

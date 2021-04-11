@@ -20,7 +20,7 @@ import java.lang.Exception
 open class TrainingCard(val view: View) : DoubleStatusView(view) {
 
     /** The main card`s view. */
-    public lateinit var card: CardView
+    lateinit var card: CardView
 
     /** The training total time`s view. */
     private lateinit var time: TextView

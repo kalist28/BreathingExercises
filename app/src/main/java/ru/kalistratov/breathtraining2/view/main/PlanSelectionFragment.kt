@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.kalistratov.breathtraining2.R
 import ru.kalistratov.breathtraining2.controller.adapter.PlanSelectionAdapter
 
+
+/**
+ * The fragment which load list of training plans to choose.
+ */
 class PlanSelectionFragment : Fragment(R.layout.fragment_selection_training) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -20,6 +24,6 @@ class PlanSelectionFragment : Fragment(R.layout.fragment_selection_training) {
 
         val recyclerView : RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = PlanSelectionAdapter(context)
+        recyclerView.adapter = context?.let { PlanSelectionAdapter(it) }
     }
 }

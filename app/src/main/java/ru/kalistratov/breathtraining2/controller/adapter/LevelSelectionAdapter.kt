@@ -12,19 +12,20 @@ import ru.kalistratov.breathtraining2.model.training.Training
 import ru.kalistratov.breathtraining2.model.training.plan.PlanLevel
 import java.util.*
 
-fun interface OnLevelSelectListener {
-    fun onSelect(level: PlanLevel<out Training>)
-}
 
 /**
- * The level selection adapter.
+ * The adapter to display the list of levels in [RecyclerView].
+ *
+ * The selected item call the [OnLevelSelectListener] and passes the level object.
  *
  * @property levels is a training levels list.
  * @property context is activity context.
  */
-class LevelSelectionAdapter(private val levels: LinkedList<out PlanLevel<out Training>>,
-                            private val context: Context?):
-        RecyclerView.Adapter<LevelCard>() {
+class LevelSelectionAdapter(
+    private val levels: LinkedList<out PlanLevel<out Training>>,
+    private val context: Context?
+) :
+    RecyclerView.Adapter<LevelCard>() {
 
     /** The activated card on the moment. */
     private var activeItem: Int = 0
@@ -60,15 +61,15 @@ class LevelSelectionAdapter(private val levels: LinkedList<out PlanLevel<out Tra
     /**
      * Convert dip to px.
      *
-     * @param dip - dp value.
+     * @param dip dp value.
      * @return dp value in pixels.
      */
     fun convert(dip: Float): Float {
         val r: Resources = context!!.resources
         return TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dip,
-                r.displayMetrics
+            TypedValue.COMPLEX_UNIT_DIP,
+            dip,
+            r.displayMetrics
         )
     }
 
@@ -82,5 +83,26 @@ class LevelSelectionAdapter(private val levels: LinkedList<out PlanLevel<out Tra
         activeItem = id
         notifyItemChanged(activeItem)
         onLevelSelectListener?.onSelect(levels[activeItem])
+        var flag: Boolean
+        Thread {
+            do {
+                flag = recyclerView?.post {
+                    recyclerView?.smoothScrollToPosition(id)
+                } == true
+                Thread.sleep(100)
+            } while (!flag)
+        }.start()
+    }
+
+    /**
+     * Interface definition for a callback to be invoked when a level was selected.
+     */
+    fun interface OnLevelSelectListener {
+        /**
+         * Called when a level was selected.
+         *
+         * @param level the selected level.
+         */
+        fun onSelect(level: PlanLevel<out Training>)
     }
 }

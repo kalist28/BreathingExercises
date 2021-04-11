@@ -7,6 +7,9 @@ import ru.kalistratov.breathtraining2.R
 /**
  * View holder with two status.
  *
+ * The view defines two fragments for the active state [viewActivate] with the ID "activate"
+ * and the inactive state [viewDeactivate] with the ID "deactivate".
+ *
  * @param view is card layout.
  */
 abstract class DoubleStatusView(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,19 +35,19 @@ abstract class DoubleStatusView(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     /** Set view`s deactivated status. */
-    public open fun deactivate() {
+    open fun deactivate() {
         setVisibleForFrames(true)
         activeView = viewDeactivate
     }
 
     /** Set view`s activated status. */
-    public open fun activate() {
+    open fun activate() {
         setVisibleForFrames(false)
         activeView = viewActivate
     }
 
     /** Deactivate all views. */
-    public open fun deactivateAllViews() {
+    open fun deactivateAllViews() {
         setViewGone(viewActivate)
         setViewGone(viewDeactivate)
     }

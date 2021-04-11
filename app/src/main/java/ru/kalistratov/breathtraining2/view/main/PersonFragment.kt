@@ -7,6 +7,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ru.kalistratov.breathtraining2.R
 
+/**
+ * The fragment which load user info and progress.
+ */
 class PersonFragment : Fragment(R.layout.fragment_person) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

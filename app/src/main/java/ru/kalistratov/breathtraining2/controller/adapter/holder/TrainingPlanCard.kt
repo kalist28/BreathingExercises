@@ -12,8 +12,16 @@ import ru.kalistratov.breathtraining2.R
  * @param view the view`s id.
  */
 class TrainingPlanCard(view: View) : RecyclerView.ViewHolder(view) {
-    val card: CardView              = view.findViewById(R.id.card)
-    val topic: TextView             = view.findViewById(R.id.topic)
-    val description: TextView       = view.findViewById(R.id.description)
-    val countTrainings: TextView    = view.findViewById(R.id.count)
+
+    /** The main card`s view. */
+    val card: CardView = view.findViewById(R.id.card)
+
+    /** The plan`s topic text view. */
+    val topic: TextView = view.findViewById(R.id.topic)
+
+    /** The plan`s description text view. */
+    val description: TextView = view.findViewById(R.id.description)
+
+    /** The plan`s count trainings text view. */
+    val countTrainings: TextView = view.findViewById(R.id.count)
 }
